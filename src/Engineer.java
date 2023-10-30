@@ -12,6 +12,7 @@ public class Engineer {
     private char[] userWord;
     private int lives = 5;
     private String randomWord;
+    Scanner scanner = new Scanner(System.in);
 
     public Engineer(String filePath) {
         this.filePath = filePath;
@@ -21,12 +22,12 @@ public class Engineer {
     public void playGame() {
         Path path = Paths.get(filePath);
         try {
-            Scanner scanner = new Scanner(System.in);
             List<String> lines = Files.readAllLines(path);
             Random random = new Random();
             int randomIndex = random.nextInt(lines.size()); // Losowy indeks
             randomWord = lines.get(randomIndex); // Losowe słowo
 
+            // Stworzenie '_' w takiej samej ilości co długość słowa
             userWord = new char[randomWord.length()];
             Arrays.fill(userWord, '_');
 
@@ -44,6 +45,8 @@ public class Engineer {
 
         } catch (IOException e) {
             System.out.println("Plik nie został znaleziony");
+        }finally {
+            scanner.close(); // Zamykanie scannera
         }
     }
 
