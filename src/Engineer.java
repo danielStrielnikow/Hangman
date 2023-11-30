@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Engineer {
     private final String filePath;
     private char[] userWord;
-    private int lives = 5;
+    private  int lives = 5;
     private String randomWord;
     Scanner scanner = new Scanner(System.in);
 
@@ -32,10 +32,9 @@ public class Engineer {
             Arrays.fill(userWord, '_');
 
             while (!gameEnded()) {
-                System.out.println(userWord);
-                System.out.println();
+                System.out.println("Masz: " + lives + " żyć do wykorzystania");
                 System.out.println("Podaj kolejną litere");
-                System.out.println("Pozostało żyć " + lives);
+                System.out.println(userWord);
 
                 char letter = scanner.nextLine().charAt(0);
 
@@ -46,6 +45,7 @@ public class Engineer {
         } catch (IOException e) {
             System.out.println("Plik nie został znaleziony");
         }finally {
+            System.out.println("Przegrałeś");
             scanner.close(); // Zamykanie scannera
         }
     }
@@ -65,7 +65,6 @@ public class Engineer {
     }
 
     private boolean gameEnded() {
-        System.out.println("Przegrałeś");
         return lives == 0 || randomWord.equals(String.valueOf(userWord));
     }
 
